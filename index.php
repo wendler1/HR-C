@@ -7,8 +7,6 @@ require 'vendor/autoload.php';
 
 use Symfony\Component\DomCrawler\Crawler;
 use GuzzleHttp\Client;
-// use Symfony\Component\BrowserKit\HttpBrowser;
-// use Symfony\Component\HttpClient\HttpClient;
 
 
 $client = new \GuzzleHttp\Client([
@@ -47,12 +45,20 @@ $body = ''.$response->getBody();
 
 $crawler = new Crawler($body);
 
+
+$empty_array = [];
 $nodeValues = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
-    echo $node->html();
+    //echo $node->html();
+    $text = $node->html();
+    $empty_array = $text;
+    return $empty_array;
 });
+print_r($nodeValues);
+
 
 echo '<br><br><br><br>';
-echo '<br><br><br><br>';echo '<br><br><br><br>';
+echo '<br><br><br><br>';
+echo '<br><br><br><br>';
 
 
 $headers = $response->getHeaders();
