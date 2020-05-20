@@ -46,23 +46,42 @@ $body = ''.$response->getBody();
 $crawler = new Crawler($body);
 
 // gives a array with all of the 100 company results
-$nodeValues = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
+$node_values = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
     return $node->html();
 });
-print_r($nodeValues);
+print_r($node_values);
 
-echo '<br><br><br><br>';
+echo '<br><br><br><br><br><br><br><br>';
+
+$useful_keywords = [
+  'GmbH'
+];
+$not_useful_keywords = [
+  'Beratung', 'consultation', 'Dienstleistung', 'Dienstleister', 'service provider',
+  'Kanzlei', 'Agentur'
+];
+
+// checks if a keword in the $useful_keywords array is given in the $node_values array and prints it out
+function checkCompanyArrayOnArray() {
+  global $node_values;
+  global $useful_keywords;
+  $matched_words_array = array_filter($useful_keywords, function($w) use($node_values){
+    $matches =  preg_grep("#\b" . $w . "\b#i", $node_values);
+    print_r($matches);
+  });
+}
+echo checkCompanyArrayOnArray();
+echo '<br><br><br><br><br><br><br><br>';
 
 // checks if a given keyword is in the company array and prints it out
-function checkCompany() {
-  global $nodeValues;
-  $matches = preg_grep("/Brillant/", $nodeValues);
+// in this case "GmbH" (justfor testing)
+function checkCompanySingleKeyword() {
+  global $node_values;
+  $matches = preg_grep("#\bgmbh\b#i", $node_values);
   print_r($matches);
 }
-echo checkCompany();
-
-
-echo '<br><br><br><br>';
+echo checkCompanySingleKeyword();
+echo '<br><br><br><br><br><br><br><br>';
 
 
 // giving the header information
