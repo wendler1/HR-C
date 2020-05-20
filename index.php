@@ -45,22 +45,27 @@ $body = ''.$response->getBody();
 
 $crawler = new Crawler($body);
 
-
-$empty_array = [];
+// gives a array with all of the 100 company results
 $nodeValues = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
-    //echo $node->html();
-    $text = $node->html();
-    $empty_array = $text;
-    return $empty_array;
+    return $node->html();
 });
 print_r($nodeValues);
 
-
-echo '<br><br><br><br>';
-echo '<br><br><br><br>';
 echo '<br><br><br><br>';
 
+// checks if a given keyword is in the company array and prints it out
+function checkCompany() {
+  global $nodeValues;
+  $matches = preg_grep("/Brillant/", $nodeValues);
+  print_r($matches);
+}
+echo checkCompany();
 
+
+echo '<br><br><br><br>';
+
+
+// giving the header information
 $headers = $response->getHeaders();
 foreach($headers as $name => $value) {
   $value = implode(', ', $value);
