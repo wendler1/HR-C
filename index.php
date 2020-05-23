@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'be',
+    'land' => 'bw',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -42,16 +42,17 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ]
 ]);
 $body = ''.$response->getBody();
-
 $crawler = new Crawler($body);
-
 // gives a array with all of the 100 company results
 $node_values = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
     return $node->html();
 });
 print_r($node_values);
 
+
 echo '<br><br><br><br><br><br><br><br>';
+
+
 
 $useful_keywords = [
   'GmbH'
@@ -70,18 +71,18 @@ function checkCompanyArrayOnArray() {
     print_r($matches);
   });
 }
-echo checkCompanyArrayOnArray();
+// echo checkCompanyArrayOnArray();
 echo '<br><br><br><br><br><br><br><br>';
 
 // checks if a given keyword is in the company array and prints it out
 // in this case "GmbH" (justfor testing)
-function checkCompanySingleKeyword() {
-  global $node_values;
-  $matches = preg_grep("#\bgmbh\b#i", $node_values);
-  print_r($matches);
-}
-echo checkCompanySingleKeyword();
-echo '<br><br><br><br><br><br><br><br>';
+// function checkCompanySingleKeyword() {
+//   global $node_values;
+//   $matches = preg_grep("#\bgmbh\b#i", $node_values);
+//   print_r($matches);
+// }
+// echo checkCompanySingleKeyword();
+// echo '<br><br><br><br><br><br><br><br>';
 
 
 // giving the header information
