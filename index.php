@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'bw',
+    'land' => 'be',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -37,7 +37,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
     'fsitz' => null,
     'rubrik' => null,
     'az' => null,
-    'gegenstand' => 0,
+    'gegenstand' => 1,
     'order' => 4
   ]
 ]);
@@ -47,7 +47,7 @@ $crawler = new Crawler($body);
 $node_values = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
     return $node->html();
 });
-print_r($node_values);
+// print_r($node_values);
 
 
 echo '<br><br><br><br><br><br><br><br>';
@@ -55,24 +55,70 @@ echo '<br><br><br><br><br><br><br><br>';
 
 
 $useful_keywords = [
-  'GmbH'
+  'GmbH', 'automobile', 'sdhvwjpev',
 ];
 $not_useful_keywords = [
-  'Beratung', 'consultation', 'Dienstleistung', 'Dienstleister', 'service provider',
+  'Beratung', 'consultation', 'consulting', 'Dienstleistung', 'Dienstleister', 'service provider',
   'Kanzlei', 'Agentur'
 ];
 
-// checks if a keword in the $useful_keywords array is given in the $node_values array and prints it out
+
+
+
+// checks if a keyword in the $useful_keywords and $not_useful_keywords array is given in the $node_values array and prints it out
 function checkCompanyArrayOnArray() {
   global $node_values;
   global $useful_keywords;
-  $matched_words_array = array_filter($useful_keywords, function($w) use($node_values){
-    $matches =  preg_grep("#\b" . $w . "\b#i", $node_values);
-    print_r($matches);
-  });
+  global $not_useful_keywords;
+
+  foreach ($node_values as $key => $value) {
+    foreach ($not_useful_keywords as $keyword) {
+      if (stripos($value, $keyword) !== false) {
+        unset($node_values[$key]);
+      }
+    }
+    foreach ($useful_keywords as $keyword) {
+      if (stripos($value, $keyword) !== false) {
+        $results[] = $node_values[$key];
+      }
+    }
+  }
+  print_r($results);
 }
-// echo checkCompanyArrayOnArray();
+echo checkCompanyArrayOnArray();
+
+
+
+
 echo '<br><br><br><br><br><br><br><br>';
+
+// giving the header information
+$headers = $response->getHeaders();
+foreach($headers as $name => $value) {
+  $value = implode(', ', $value);
+  echo "{$name}: {$value}\r\n";
+}
+
+
+
+
+
+
+
+
+// checks if a keword in the $useful_keywords array is given in the $node_values array and prints it out
+// array_filter($useful_keywords, function($w) use($node_values){
+//   $matches =  preg_grep("#\b" . $w . "\b#i", $node_values);
+//   // print_r($matches);
+//   foreach($matches as $match){
+//     if(empty($matches)){
+//       unset($matches);
+//     }
+//     echo $match,"<br />";
+//
+//   }
+// });
+
 
 // checks if a given keyword is in the company array and prints it out
 // in this case "GmbH" (justfor testing)
@@ -83,11 +129,3 @@ echo '<br><br><br><br><br><br><br><br>';
 // }
 // echo checkCompanySingleKeyword();
 // echo '<br><br><br><br><br><br><br><br>';
-
-
-// giving the header information
-$headers = $response->getHeaders();
-foreach($headers as $name => $value) {
-  $value = implode(', ', $value);
-  echo "{$name}: {$value}\r\n";
-}
