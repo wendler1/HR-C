@@ -59,8 +59,54 @@ $useful_keywords = [
 ];
 $not_useful_keywords = [
   'Beratung', 'consultation', 'consulting', 'Dienstleistung', 'Dienstleister', 'service provider',
-  'Kanzlei', 'Agentur'
+  'Kanzlei', 'Agentur',
 ];
+
+$gs_keywords = [
+    'Artist', 'about', 'aktiv', 'amor', 'app', 'audio', 'auto', 'alliance', 'advisor', 'agent',
+    'Baby', 'basic', 'beauty', 'best', 'better', 'Bildung', 'billiger', 'bill', 'bio', 'box', 'bit', 'bite', 'blink', 'blue', 'Blumen', 'butler', 'body', 'bonus', 'book',
+    'brain', 'brand', 'buch', 'business', 'burger', 'beer', 'bot', 'brief', 'button', 'bestseller', 'base', 'buddy', 'blick', 'black', 'bird', 'beat', 'blau', 'builder',
+    'car', 'cloud', 'crowd', 'care', 'case', 'cat', 'call', 'campus', 'connect', 'channel', 'check', 'chat', 'cheap', 'city', 'chef', 'choco', 'cine', 'Click', 'club',
+    'code', 'coding', 'coffee', 'collect', 'communication', 'community', 'company', 'content', 'copy', 'couch', 'coupon', 'credit', 'craft', 'customer', 'cyber', 'cool', 'clever', 'candy',
+    'challenge', 'color', 'change', 'cab', 'catcher',
+    'days', 'digital', 'date', 'dog', 'drive', 'daily', 'deal', 'data', 'debit', 'Dein', 'deep', 'design', 'delikat', 'delicious', 'deliver', 'demo', 'desk', 'dental', 'desire', 'detail',
+    'deutsch', 'device', 'direkt', 'discount', 'door', 'darling', 'duell',
+    'economics', 'e-commerce', 'entertainment', 'essen', 'early', 'easy', 'eat', 'ebook', 'elektro', 'element', 'elite', 'endless', 'energy', 'energie', 'entwickler', 'event', 'experience', 'expert', 'explain', 'eye',
+    'finder', 'flash', 'flower', 'friend', 'funk', 'fleisch', 'food', 'factory', 'fair', 'family', 'fashion', 'fast', 'fellow', 'flames', 'finance', 'financial', 'finanz', 'fine', 'fire', 'first',
+    'fit', 'fitness', 'flight', 'foot', 'freelance', 'fresh', 'frisch',
+    'games', 'game', 'gastro', 'geiz', 'genus', 'German', 'Geschenk', 'get', 'guide', 'global', 'good', 'golf', 'gold', 'green', 'grün', 'gelb', 'groupon', 'grinder', 'Gutschein',
+    'Gruppe', 'generation',
+    'health', 'home', 'handy', 'hallo', 'happy', 'haus', 'heart', 'heimat', 'hello', 'help', 'hemp', 'hidden', 'high', 'Hochzeit', 'Hotel', 'house', 'held', 'hero', 'hub',
+    'ideal', 'idea', 'idee', 'ident', 'infinity', 'inno', 'item',
+    'jerky', 'job', 'join', 'juicy', 'young', 'jung', 'just', 'jagd',
+    'Koenig', 'king', 'kids', 'kaffee', 'kaputt', 'karriere', 'kauf', 'kern', 'key', 'kinder', 'kino', 'kiss', 'kitchen', 'klick', 'klima', 'koffer', 'kontakt', 'kopf', 'Kokos', 'kredit',
+    'kunst', 'kommunikation',
+    'laser', 'link', 'lover', 'living', 'lingerie', 'love', 'lab', 'labs', 'later', 'Lebenslauf', 'lemon', 'liefer', 'lifestyle', 'light', 'ling', 'liquid', 'little', 'lokal', 'loop', 'lucky',
+    'luxus', 'level', 'lobby',
+    'Markt', 'marketing', 'Medien', 'meat', 'mate', 'movement', 'medical', 'media', 'monday', 'mobility', 'mädchen', 'made', 'magazine', 'main', 'make', 'master', 'match', 'meal', 'medi', 'meet',
+    'mein', 'milk', 'mister', 'mobile', 'Moebel', 'money', 'move', 'moving', 'music', 'musik', 'mute', 'My', 'muesli',
+    'nerd', 'ninja', 'natur', 'nacht', 'navi', 'net', 'netz' , 'news', 'next', 'night', 'note', 'notebook', 'network',
+    'office', 'ocean','online', 'open', 'order', 'original', 'outfit', 'over', 'oxygen',
+    'phone', 'power', 'product', 'pilot', 'portal', 'people', 'pair', 'paper', 'papier', 'perfume', 'parfum', 'park', 'Parkplatz', 'party', 'patient', 'pay', 'peak', 'perfect', 'person',
+    'pflege', 'photo', 'pixel', 'pizza', 'place', 'plan', 'podcast', 'praktikum', 'preis', 'prima', 'profi', 'project', 'promotion', 'punk', 'pure',
+    'quiz',
+    'Roller', 'room', 'right', 'radio', 'reload', 'Rabatt', 'rate', 'ready', 'rank', 'read', 'record', 'regio', 'reise', 'response', 'rent',  'receipt', 'rezept', 'ride', 'risk',
+    'robo', 'rocket',
+    'scout', 'startup', 'sharing', 'supply', 'safe', 'smart', 'smartphone', 'scape', 'straps', 'school', 'service', 'sofa', 'sparen', 'size', 'spirit', 'software', 'saving', 'schwarz', 'score', 'spielzeug',
+    'surf', 'stark', 'strong', 'start-up', 'scan', 'schlaf', 'sleep', 'schmuck', 'schnitt', 'schuh', 'shoes', 'schueler', 'search', 'second', 'secure', 'seed', 'share', 'ship', 'shop',
+    'signal', 'simple', 'skill', 'small', 'snap', 'sober', 'social', 'sock', 'sofort', 'soft', 'solar', 'Sonntag', 'sunday', 'soul', 'sound', 'spar', 'speise', 'spiegel', 'sport', 'spread',
+    'spotted', 'stage', 'store', 'strand', 'stream', 'street', 'stress', 'student', 'study', 'style', 'sugar', 'suit', 'super', 'sweet', 'switch',
+    'ticket', 'thinking', 'team', 'trend', 'taxi', 'take', 'talent', 'Tarif', 'tausch', 'tee', 'tea', 'tech', 'test', 'textil',
+    ' the ', 'think', 'time', 'titan', 'tomorrow', 'tour', 'toy', 'track', 'tracks', 'trade', 'traffic', 'travel', 'treasure', 'trip', 'trust',
+    'uber', 'ueber', 'united', 'user', 'unser', 'Unternehmer', 'urlaub', 'used', 'university',
+    'vision', 'virtuality', 'vital', 'verein', 'vergleich', 'verkehr', 'Versorgung', 'video', 'views',  'vino', 'virtual', 'visit', 'visum', 'voll', 'vorsorge',
+    'wrong', 'writers', 'wedding', 'werk', 'werkstatt', 'wonder', 'wunder', 'wander', ' was ', 'watch', 'welcome', 'wellness', 'welt', 'world', 'wetter', 'wein', 'wing', 'wise', 'wolke',
+    'work', 'wünsch', 'waste',
+    'xpress', 'you', 'yoga', 'yellow', 'zutat', 'zimmer', 'zigarette', 'zins', 'zoo', 'zuhaus',
+    'twentyfourseven', 'twentyfour', 'twenty', 'one', 'two', 'three', 'four', 'seven'
+];
+
+//var_dump(count($gs_keywords));exit();
 
 
 
@@ -70,6 +116,7 @@ function checkCompanyArrayOnArray() {
   global $node_values;
   global $useful_keywords;
   global $not_useful_keywords;
+  global $gs_keywords;
 
   foreach ($node_values as $key => $value) {
     foreach ($not_useful_keywords as $keyword) {
@@ -77,13 +124,19 @@ function checkCompanyArrayOnArray() {
         unset($node_values[$key]);
       }
     }
-    foreach ($useful_keywords as $keyword) {
+    // foreach ($useful_keywords as $keyword) {
+    //   if (stripos($value, $keyword) !== false) {
+    //     $results[] = $node_values[$key];
+    //   }
+    // }
+    foreach ($gs_keywords as $keyword) {
       if (stripos($value, $keyword) !== false) {
         $results[] = $node_values[$key];
       }
     }
   }
-  print_r($results);
+  print_r(array_unique($results));
+  //print_r($results);
 }
 echo checkCompanyArrayOnArray();
 
