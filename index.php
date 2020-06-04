@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'be',
+    'land' => 'hh',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -47,7 +47,7 @@ $crawler = new Crawler($body);
 $node_values = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
     return $node->html();
 });
-// print_r($node_values);
+ print_r($node_values);
 
 
 echo '<br><br><br><br><br><br><br><br>';
@@ -60,6 +60,18 @@ $useful_keywords = [
 $not_useful_keywords = [
   'Beratung', 'consultation', 'consulting', 'Dienstleistung', 'Dienstleister', 'service provider',
   'Kanzlei', 'Agentur',
+  'Friseursalon', 'Friseur', 'Vermögensverwaltung', 'Möbel', 'Volksbank', 'Transporte', 'Grundstücksverwaltung',
+  'Bauunternehmer', 'Bauunternehmen', 'Gesundheitszentrum', 'Unternehmensberatung', 'Aufzugsmontageservice', 'Catering', 'e.V.', 'Versorgungszentrum', 'Haustechnik',
+
+  'Verwaltungs', 'Hotel', 'Versicherungsbüro', 'Finanzen', 'holding', 'service', 'Industriestore', 'Verladetechnik', 'Seniorenhaus', 'Garten- und Landschaftsbau',
+  'Immobilien', 'Presse', 'Redaktion', 'Grundbesitz', 'insurance', 'Gartengestaltung',
+
+  'Autohandel', 'Automobile', 'Pflegeteam', 'Blumenhaus', 'Tankstelle', 'e. V.', 'Berufsausübungsgemeinschaft', 'Bauplanung', 'Solarbau', 'Sachverständigengesellschaft',
+  'Baudienstleistungen', 'Landschaftspflege', 'Malermeister', 'Anlagenmontage',
+
+  'e.K.', 'e.Kfr', 'e.Kfm.', 'ventures', 'trade ', 'construction',
+
+  'Tagespflege', 'Real Estate', 'Windpark',
 ];
 
 $gs_keywords = [
@@ -103,10 +115,19 @@ $gs_keywords = [
     'wrong', 'writers', 'wedding', 'werk', 'werkstatt', 'wonder', 'wunder', 'wander', ' was ', 'watch', 'welcome', 'wellness', 'welt', 'world', 'wetter', 'wein', 'wing', 'wise', 'wolke',
     'work', 'wünsch', 'waste',
     'xpress', 'you', 'yoga', 'yellow', 'zutat', 'zimmer', 'zigarette', 'zins', 'zoo', 'zuhaus',
-    'twentyfourseven', 'twentyfour', 'twenty', 'one', 'two', 'three', 'four', 'seven'
+    'twentyfourseven', 'twentyfour', 'twenty', 'one ', 'two ', 'three', 'four', 'seven',
+
+
+    'Commercial', 'concern', 'company', 'industry', 'profitability', 'corporate', 'entrepreneurs', 'marketplace', 'client', 'merchants', 'professional',
+    'Engineering', 'science', 'innovation', 'computing', 'development', 'skills', 'skilled', 'data-processing', 'hi-tech', 'high-tech', 'robotics', 'system', 'solution',
+    'Nutrient', 'gourmet', 'groceries', 'cooking', 'hunger', 'chow', 'lunch', 'refreshment', 'dish', 'drinking', 'dinner', 'diet',
+    'Fruit', 'vegetable', 'watermelon', 'banana', 'apple', 'coconut', 'orange', 'grape', 'melon', 'peach', 'tomato', 'lettuce', 'onion', 'pumpkin', 'carrot', 'potato', 'cherry',
+    'healthcare', 'vitality', 'Career', 'lifetime', 'journey', 'assignment', 'progress', 'course', 'Television', 'journalist', 'multimedia', 'communications', 'audiovisual',
+
 ];
 
-//var_dump(count($gs_keywords));exit();
+// var_dump(count($gs_keywords));exit();
+
 
 
 
@@ -124,19 +145,20 @@ function checkCompanyArrayOnArray() {
         unset($node_values[$key]);
       }
     }
-    // foreach ($useful_keywords as $keyword) {
-    //   if (stripos($value, $keyword) !== false) {
-    //     $results[] = $node_values[$key];
-    //   }
-    // }
     foreach ($gs_keywords as $keyword) {
       if (stripos($value, $keyword) !== false) {
         $results[] = $node_values[$key];
       }
     }
   }
-  print_r(array_unique($results));
-  //print_r($results);
+  $new_array_results = array_unique($results);
+  print_r(count($new_array_results));
+  echo '<br><br><br>';
+  print_r($new_array_results);
+
+  // möglichkeit zum testen nur für ausfilterung mit $not_useful_keywords
+  // print_r(count($node_values));
+  // print_r($node_values);
 }
 echo checkCompanyArrayOnArray();
 
@@ -154,7 +176,7 @@ foreach($headers as $name => $value) {
 
 
 
-
+echo '<br><br><br><br><br><br><br><br>';
 
 
 
