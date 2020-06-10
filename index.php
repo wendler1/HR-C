@@ -75,7 +75,7 @@ $not_useful_keywords = [
 
   'Zweigniederlassung', 'Restaurant', 'Ingenieure', 'Sicherheitsdienst',
 
-  'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung', ' Montageteam', 
+  'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung', ' Montageteam',
 ];
 
 
@@ -151,6 +151,8 @@ function checkCompanyArrayOnArray() {
         unset($node_values[$key]);
       }
     }
+  }
+  foreach ($node_values as $key => $value) {
     foreach ($gs_keywords as $keyword) {
       if (stripos($value, $keyword) !== false) {
         $results[] = $node_values[$key];
@@ -181,10 +183,7 @@ foreach($headers as $name => $value) {
 }
 
 
-
 echo '<br><br><br><br><br><br><br><br>';
-
-
 
 
 // checks if a keword in the $useful_keywords array is given in the $node_values array and prints it out
