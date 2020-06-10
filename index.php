@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'hh',
+    'land' => 'mv',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -72,7 +72,12 @@ $not_useful_keywords = [
   'e.K.', 'e.Kfr', 'e.Kfm.', 'ventures', 'trade ', 'construction',
 
   'Tagespflege', 'Real Estate', 'Windpark',
+
+  'Zweigniederlassung', 'Restaurant', 'Ingenieure', 'Sicherheitsdienst',
+
+  'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung', ' Montageteam', 
 ];
+
 
 $gs_keywords = [
     'Artist', 'about', 'aktiv', 'amor', 'app', 'audio', 'auto', 'alliance', 'advisor', 'agent',
@@ -95,18 +100,19 @@ $gs_keywords = [
     'kunst', 'kommunikation',
     'laser', 'link', 'lover', 'living', 'lingerie', 'love', 'lab', 'labs', 'later', 'Lebenslauf', 'lemon', 'liefer', 'lifestyle', 'light', 'ling', 'liquid', 'little', 'lokal', 'loop', 'lucky',
     'luxus', 'level', 'lobby',
-    'Markt', 'marketing', 'Medien', 'meat', 'mate', 'movement', 'medical', 'media', 'monday', 'mobility', 'mädchen', 'made', 'magazine', 'main', 'make', 'master', 'match', 'meal', 'medi', 'meet',
+    'Markt', 'marketing', 'Medien', 'meat', 'mate', 'movement', 'medical', 'media', 'monday', 'mobility', 'mädchen', 'made', 'magazine', 'make', 'master', 'match', 'meal', 'medi', 'meet',
     'mein', 'milk', 'mister', 'mobile', 'Moebel', 'money', 'move', 'moving', 'music', 'musik', 'mute', 'My', 'muesli',
     'nerd', 'ninja', 'natur', 'nacht', 'navi', 'net', 'netz' , 'news', 'next', 'night', 'note', 'notebook', 'network',
     'office', 'ocean','online', 'open', 'order', 'original', 'outfit', 'over', 'oxygen',
     'phone', 'power', 'product', 'pilot', 'portal', 'people', 'pair', 'paper', 'papier', 'perfume', 'parfum', 'park', 'Parkplatz', 'party', 'patient', 'pay', 'peak', 'perfect', 'person',
     'pflege', 'photo', 'pixel', 'pizza', 'place', 'plan', 'podcast', 'praktikum', 'preis', 'prima', 'profi', 'project', 'promotion', 'punk', 'pure',
     'quiz',
-    'Roller', 'room', 'right', 'radio', 'reload', 'Rabatt', 'rate', 'ready', 'rank', 'read', 'record', 'regio', 'reise', 'response', 'rent',  'receipt', 'rezept', 'ride', 'risk',
+    'Roller', 'room', 'right', 'radio', 'reload', 'Rabatt', 'rate', 'ready', 'read', 'record', 'regio', 'reise', 'response', 'rent',  'receipt', 'rezept', 'ride', 'risk',
     'robo', 'rocket',
     'scout', 'startup', 'sharing', 'supply', 'safe', 'smart', 'smartphone', 'scape', 'straps', 'school', 'service', 'sofa', 'sparen', 'size', 'spirit', 'software', 'saving', 'schwarz', 'score', 'spielzeug',
     'surf', 'stark', 'strong', 'start-up', 'scan', 'schlaf', 'sleep', 'schmuck', 'schnitt', 'schuh', 'shoes', 'schueler', 'search', 'second', 'secure', 'seed', 'share', 'ship', 'shop',
     'signal', 'simple', 'skill', 'small', 'snap', 'sober', 'social', 'sock', 'sofort', 'soft', 'solar', 'Sonntag', 'sunday', 'soul', 'sound', 'spar', 'speise', 'spiegel', 'sport', 'spread',
+
     'spotted', 'stage', 'store', 'strand', 'stream', 'street', 'stress', 'student', 'study', 'style', 'sugar', 'suit', 'super', 'sweet', 'switch',
     'ticket', 'thinking', 'team', 'trend', 'taxi', 'take', 'talent', 'Tarif', 'tausch', 'tee', 'tea', 'tech', 'test', 'textil',
     ' the ', 'think', 'time', 'titan', 'tomorrow', 'tour', 'toy', 'track', 'tracks', 'trade', 'traffic', 'travel', 'treasure', 'trip', 'trust',
