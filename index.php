@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'mv',
+    'land' => 'rp',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -47,8 +47,20 @@ $crawler = new Crawler($body);
 $node_values = $crawler->filter('li > a > ul')->each(function (Crawler $node, $i) {
     return $node->html();
 });
- print_r($node_values);
+print_r($node_values);
 
+echo '<br><br><br><br><br><br><br><br>';
+
+
+
+foreach ($node_values as $key => $value) {
+  // print_r(strstr($value, ','));
+  // substr($value, 0, strpos($value, ","));
+  // var_dump($value);
+  $node_values_new[] = substr($value, 0, strpos($value, ","));
+}
+print_r($node_values_new);
+// var_dump($node_values_new);
 
 echo '<br><br><br><br><br><br><br><br>';
 
@@ -76,6 +88,13 @@ $not_useful_keywords = [
   'Zweigniederlassung', 'Restaurant', 'Ingenieure', 'Sicherheitsdienst',
 
   'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung', ' Montageteam',
+
+   'Rohbau', 'carwash ', 'Sportstudio', 'Personalleasing', 'physiotherapie', 'Trockenbau', 'Spielhalle',
+
+   'Sicherheitstechnik', 'Akademie ', 'Ingenieurbüro', 'Lüftungstechnik', 'Institut ', 'Straßenbau', 'Steuerberatung',
+
+   'Cosmetics', 'Kommunikationstechnik', 'Investment', ' leasing', 'Logistik', 'logistics', 'Verwaltung', 'Solution',
+
 ];
 
 
@@ -130,6 +149,7 @@ $gs_keywords = [
     'Fruit', 'vegetable', 'watermelon', 'banana', 'apple', 'coconut', 'orange', 'grape', 'melon', 'peach', 'tomato', 'lettuce', 'onion', 'pumpkin', 'carrot', 'potato', 'cherry',
     'healthcare', 'vitality', 'Career', 'lifetime', 'journey', 'assignment', 'progress', 'course', 'Television', 'journalist', 'multimedia', 'communications', 'audiovisual',
 
+    'Programming',
 ];
 
 // var_dump(count($gs_keywords));exit();
@@ -144,6 +164,7 @@ function checkCompanyArrayOnArray() {
   global $useful_keywords;
   global $not_useful_keywords;
   global $gs_keywords;
+
 
   foreach ($node_values as $key => $value) {
     foreach ($not_useful_keywords as $keyword) {
