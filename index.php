@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'rp',
+    'land' => 'st',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -52,15 +52,12 @@ print_r($node_values);
 echo '<br><br><br><br><br><br><br><br>';
 
 
-
+// gives from each company just the name till the first comma
 foreach ($node_values as $key => $value) {
-  // print_r(strstr($value, ','));
-  // substr($value, 0, strpos($value, ","));
-  // var_dump($value);
   $node_values_new[] = substr($value, 0, strpos($value, ","));
 }
-print_r($node_values_new);
-// var_dump($node_values_new);
+// print_r(implode("<br>\n",$node_values_new));
+
 
 echo '<br><br><br><br><br><br><br><br>';
 
@@ -72,29 +69,28 @@ $useful_keywords = [
 $not_useful_keywords = [
   'Beratung', 'consultation', 'consulting', 'Dienstleistung', 'Dienstleister', 'service provider',
   'Kanzlei', 'Agentur',
-  'Friseursalon', 'Friseur', 'Vermögensverwaltung', 'Möbel', 'Volksbank', 'Transporte', 'Grundstücksverwaltung',
-  'Bauunternehmer', 'Bauunternehmen', 'Gesundheitszentrum', 'Unternehmensberatung', 'Aufzugsmontageservice', 'Catering', 'e.V.', 'Versorgungszentrum', 'Haustechnik',
-
-  'Verwaltungs', 'Hotel', 'Versicherungsbüro', 'Finanzen', 'holding', 'service', 'Industriestore', 'Verladetechnik', 'Seniorenhaus', 'Garten- und Landschaftsbau',
+  'Friseur', 'Möbel', 'Volksbank', 'Transporte',
+  'Bauunternehmer', 'Bauunternehmen', 'Gesundheitszentrum', 'Catering', 'Versorgungszentrum', 'Haustechnik',
+  'Hotel', 'Versicherungsbüro', 'Finanzen', 'holding', 'service', 'Industriestore', 'Verladetechnik', 'Seniorenhaus', 'Garten- und Landschaftsbau',
   'Immobilien', 'Presse', 'Redaktion', 'Grundbesitz', 'insurance', 'Gartengestaltung',
-
-  'Autohandel', 'Automobile', 'Pflegeteam', 'Blumenhaus', 'Tankstelle', 'e. V.', 'Berufsausübungsgemeinschaft', 'Bauplanung', 'Solarbau', 'Sachverständigengesellschaft',
-  'Baudienstleistungen', 'Landschaftspflege', 'Malermeister', 'Anlagenmontage',
-
-  'e.K.', 'e.Kfr', 'e.Kfm.', 'ventures', 'trade ', 'construction',
-
+  'Autohandel', 'Automobile', 'Pflegeteam', 'Blumenhaus', 'Tankstelle', 'Berufsausübungsgemeinschaft', 'Bauplanung', 'Solarbau',
+  'Landschaftspflege', 'Malermeister',
+  'e.K.', 'e. K.', 'e.Kfr', 'e.Kfm.', 'e.V.', 'e. V.',
+  'ventures', 'trade ', 'construction',
   'Tagespflege', 'Real Estate', 'Windpark',
-
   'Zweigniederlassung', 'Restaurant', 'Ingenieure', 'Sicherheitsdienst',
+  'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung',
+  'Rohbau', 'carwash ', 'Sportstudio', 'physiotherapie', 'Trockenbau', 'Spielhalle',
+  'Sicherheitstechnik', 'Akademie ', 'Ingenieurbüro', 'Lüftungstechnik', 'Institut ', 'Straßenbau',
+  'Cosmetics', 'Kommunikationstechnik', 'Investment', ' leasing', 'Logistik', 'logistics', 'Verwaltung', 'Solution',
+  'Seniorenresidenz', 'Angiologie', 'Tierpark', 'Sanitätshaus',
+  'Verkehrsplanung', 'Getränke', 'Bauprojekt', 'Eventmanagement', 'Capital', 'Architekt', 'Frischemarkt', 'Solarpark', 'Montage', 'Spedition', 'taxi ',
+  'Elektrotechnik', ' Bau ', 'Agrarhandel', 'Sachverständig', 'Energie', 'Energy', 'Projekt', 'Events',
 
-  'Bohrtechnik', 'Fliesenhandwerk', 'Bauträger', 'Car Center',  'Pflegedienst', 'Blitzschutztechnik', 'gemeinnützig', 'Dachdecker', 'Gerüstbau', 'Konditorei', ' Makler', 'Bausanierung', ' Montageteam',
 
-   'Rohbau', 'carwash ', 'Sportstudio', 'Personalleasing', 'physiotherapie', 'Trockenbau', 'Spielhalle',
-
-   'Sicherheitstechnik', 'Akademie ', 'Ingenieurbüro', 'Lüftungstechnik', 'Institut ', 'Straßenbau', 'Steuerberatung',
-
-   'Cosmetics', 'Kommunikationstechnik', 'Investment', ' leasing', 'Logistik', 'logistics', 'Verwaltung', 'Solution',
-
+  // Rausgenommen weil doppelt vorhanden als String
+  // 'Unternehmensberatung', 'Steuerberatung', 'Baudienstleistungen', 'Friseursalon', 'Aufzugsmontageservice', 'Personalleasing', 'Verwaltungs', 'Grundstücksverwaltung',  'Vermögensverwaltung',
+  // 'Anlagenmontage', 'Montageprofi', 'Sachverständigengesellschaft', ' Montageteam', 'Bauprojekt',
 ];
 
 
@@ -107,7 +103,7 @@ $gs_keywords = [
     'challenge', 'color', 'change', 'cab', 'catcher',
     'days', 'digital', 'date', 'dog', 'drive', 'daily', 'deal', 'data', 'debit', 'Dein', 'deep', 'design', 'delikat', 'delicious', 'deliver', 'demo', 'desk', 'dental', 'desire', 'detail',
     'deutsch', 'device', 'direkt', 'discount', 'door', 'darling', 'duell',
-    'economics', 'e-commerce', 'entertainment', 'essen', 'early', 'easy', 'eat', 'ebook', 'elektro', 'element', 'elite', 'endless', 'energy', 'energie', 'entwickler', 'event', 'experience', 'expert', 'explain', 'eye',
+    'economics', 'e-commerce', 'entertainment', 'essen', 'early', 'easy', 'eat', 'ebook', 'element', 'elite', 'endless', 'energy', 'energie', 'entwickler', 'experience', 'expert', 'explain', 'eye',
     'finder', 'flash', 'flower', 'friend', 'funk', 'fleisch', 'food', 'factory', 'fair', 'family', 'fashion', 'fast', 'fellow', 'flames', 'finance', 'financial', 'finanz', 'fine', 'fire', 'first',
     'fit', 'fitness', 'flight', 'foot', 'freelance', 'fresh', 'frisch',
     'games', 'game', 'gastro', 'geiz', 'genus', 'German', 'Geschenk', 'get', 'guide', 'global', 'good', 'golf', 'gold', 'green', 'grün', 'gelb', 'groupon', 'grinder', 'Gutschein',
@@ -161,35 +157,68 @@ $gs_keywords = [
 // checks if a keyword in the $useful_keywords and $not_useful_keywords array is given in the $node_values array and prints it out
 function checkCompanyArrayOnArray() {
   global $node_values;
+  global $node_values_new;
   global $useful_keywords;
   global $not_useful_keywords;
   global $gs_keywords;
 
 
-  foreach ($node_values as $key => $value) {
+  foreach ($node_values_new as $key => $value) {
     foreach ($not_useful_keywords as $keyword) {
       if (stripos($value, $keyword) !== false) {
-        unset($node_values[$key]);
+        unset($node_values_new[$key]);
       }
     }
   }
-  foreach ($node_values as $key => $value) {
+  foreach ($node_values_new as $key => $value) {
     foreach ($gs_keywords as $keyword) {
       if (stripos($value, $keyword) !== false) {
-        $results[] = $node_values[$key];
+        $results[] = $node_values_new[$key];
       }
     }
   }
   $new_array_results = array_unique($results);
   print_r(count($new_array_results));
-  echo '<br><br><br>';
-  print_r($new_array_results);
+  print_r(' Ergebnise durch check beider arrays: ');
+  echo '<br><br>';
+  print_r(implode("<br>\n",$new_array_results));
 
   // möglichkeit zum testen nur für ausfilterung mit $not_useful_keywords
-  // print_r(count($node_values));
-  // print_r($node_values);
+  // print_r(count($node_values_new));
+  // print_r($node_values_new);
 }
 echo checkCompanyArrayOnArray();
+
+
+
+
+echo '<br><br><br><br><br><br><br><br>';
+
+
+
+// checks if a keyword in the $useful_keywords and $not_useful_keywords array is given in the $node_values array and prints it out
+function checkCompanyArrayOnArray2() {
+  global $node_values;
+  global $node_values_new;
+  global $useful_keywords;
+  global $not_useful_keywords;
+  global $gs_keywords;
+
+
+  foreach ($node_values_new as $key => $value) {
+    foreach ($not_useful_keywords as $keyword) {
+      if (stripos($value, $keyword) !== false) {
+        unset($node_values_new[$key]);
+      }
+    }
+  }
+  // möglichkeit zum testen nur für ausfilterung mit $not_useful_keywords
+  print_r(count($node_values_new));
+  print_r(' Ergebnise nur durch check des not_useful_keywords arrays: ');
+  echo '<br><br>';
+  print_r(implode("<br>\n",$node_values_new));
+}
+echo checkCompanyArrayOnArray2();
 
 
 
