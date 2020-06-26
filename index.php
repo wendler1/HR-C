@@ -19,7 +19,7 @@ $response = $client->request('POST', 'https://www.handelsregisterbekanntmachunge
   ],
   'form_params' => [
     'suchart' => 'uneingeschr',
-    'land' => 'st',
+    'land' => 'nw',
     'button' => 'Suche starten',
     'gericht' => null,
     'gericht_name' => null,
@@ -75,7 +75,7 @@ $not_useful_keywords = [
   'Immobilien', 'Presse', 'Redaktion', 'Grundbesitz', 'insurance', 'Gartengestaltung',
   'Autohandel', 'Automobile', 'Pflegeteam', 'Blumenhaus', 'Tankstelle', 'Berufsausübungsgemeinschaft', 'Bauplanung', 'Solarbau',
   'Landschaftspflege', 'Malermeister',
-  'e.K.', 'e. K.', 'e.Kfr', 'e.Kfm.', 'e.V.', 'e. V.',
+  'e.K.', 'e. K.', 'e.Kfr', 'e.Kfm.', 'e.V.', 'e. V.', 'e. Kfr.',
   'ventures', 'trade ', 'construction',
   'Tagespflege', 'Real Estate', 'Windpark',
   'Zweigniederlassung', 'Restaurant', 'Ingenieure', 'Sicherheitsdienst',
@@ -87,7 +87,31 @@ $not_useful_keywords = [
   'Verkehrsplanung', 'Getränke', 'Bauprojekt', 'Eventmanagement', 'Capital', 'Architekt', 'Frischemarkt', 'Solarpark', 'Montage', 'Spedition', 'taxi ',
   'Elektrotechnik', ' Bau ', 'Agrarhandel', 'Sachverständig', 'Energie', 'Energy', 'Projekt', 'Events',
 
+  'Augenzentrum', 'Invest', 'Landbau', 'Vertrieb', 'Kommunikation', 'Atelier', ' Agar ', 'Fahrschule', 'Hilfen', 'Vermögen',
 
+  'Gebäudetechnik', 'Baumanagement', 'Bauausrüstungen', 'Bestattung', 'Werksvertretungen', 'Bäckerei', 'Forsthaus',
+  'Landtechnik', ' Pflege ', 'Zimmerei', 'Planungsbüro', ' Forst ', 'Autohaus', 'Schauspielhaus', 'Betreutes', 'Kapitalanlagevermittlung',
+
+  'Dönerproduktion', 'Döner_Produktion', 'Grundstück', ' Agrar ', 'Autozentrum', ' Fitness ', ' accounting ',  'Wohnbau', ' Cafe ',
+
+  'Schallschutz', 'Baumpflege', 'Glashandel',
+
+  'Kraftbau', 'Residenz', 'Elektroinstallation', 'Fernmeldetechnik', 'Bauausführung',
+
+  'Industrietransport', 'Zahnarzt', 'Gastronomiebetrieb', 'Implantologie', 'Chirurgie', 'Ferienpark',
+
+  'Beteiligungs', '-Bau', 'Werbetechnik', 'Allgemeinmedizin', 'Bootswerft', 'Anlagenbau', 'Stahlbau',
+
+  'Qualitätsmanagement', 'Leichtbau', 'Massivbau',
+
+  'Kfz', 'Wassertechnik', 'Dichttechnik', 'REWE ', ' Fracht', 'Pflegezeit', ' Logistic ', 'Makler ', 'Tiefbau', 'Pflegezentrum', 'Johanniter ', 'Luftrettung', 'Nutzfahrzeug',
+  'Baudekoration', 'Hausbau ', 'Klinik', 'Betreuungsdienst', 'Osteopathie',
+
+  ' Ausbau ', 'Wohneigentum', 'Café ', 'Holzhandel', 'Sanierung', 'Warenhandel', ' Import ',
+
+  'Chauffeur', 'Chirurg', 'Personalleasing', 'Fischmanufaktur', 'Depotstrategien', 'Bauelemente', 'Haus ',
+
+  'Vermietung', 'Stuckateur', 'Baugesellschaft', 'Restaurator', 'Solartechnik', ' Dental ', 'Döner ', 'Verw.', 'Planungs', 'Solarkraftwerk', 'Facility Management',
   // Rausgenommen weil doppelt vorhanden als String
   // 'Unternehmensberatung', 'Steuerberatung', 'Baudienstleistungen', 'Friseursalon', 'Aufzugsmontageservice', 'Personalleasing', 'Verwaltungs', 'Grundstücksverwaltung',  'Vermögensverwaltung',
   // 'Anlagenmontage', 'Montageprofi', 'Sachverständigengesellschaft', ' Montageteam', 'Bauprojekt',
@@ -146,6 +170,12 @@ $gs_keywords = [
     'healthcare', 'vitality', 'Career', 'lifetime', 'journey', 'assignment', 'progress', 'course', 'Television', 'journalist', 'multimedia', 'communications', 'audiovisual',
 
     'Programming',
+
+    'charge', 'grow', 'sharp', 'flow',
+
+    'genius', 'active', 'parcel',
+
+    'future', 'tribe', 'urban', 'brother',
 ];
 
 // var_dump(count($gs_keywords));exit();
