@@ -4,10 +4,10 @@ ini_set(‘display_errors’, ‘On’);
 ini_set(‘display_startup_errors’, ‘On’);
 
 require 'vendor/autoload.php';
+require_once("db_config.inc.php");
 
 use Symfony\Component\DomCrawler\Crawler;
 use GuzzleHttp\Client;
-
 
 $client = new \GuzzleHttp\Client([
   'base_uri' => 'https://www.handelsregisterbekanntmachungen.de/?aktion=suche'
@@ -56,7 +56,6 @@ foreach ($node_values as $key => $value) {
   $node_values_new[] = substr($value, 0, strpos($value, ","));
 }
 // print_r(implode("<br>\n",$node_values_new));
-
 
 $useful_keywords = [
   'Artist', 'about', 'aktiv', 'amor', 'app', 'audio', 'auto', 'alliance', 'advisor', 'agent', 'challenge', 'color', 'change', 'cab', 'catcher', 'Gruppe', 'generation',
@@ -123,6 +122,7 @@ $not_useful_keywords = [
 function checkCompanyBigSearch() {
   global $node_values_new;
   global $not_useful_keywords;
+  global $conn;
 
   foreach ($node_values_new as $key => $value) {
     foreach ($not_useful_keywords as $keyword) {
@@ -141,6 +141,10 @@ function checkCompanyBigSearch() {
   // fwrite($fp, "durch die Ausfilterung des ersten Arrays bleiben $counter mögliche Unternehmen übrig \n\n ");
   // fputcsv($fp, $node_values_new, "\n");
   // fclose($fp);
+  foreach ($node_values_new as $key => $value) {
+    $statement = $conn->prepare("INSERT IGNORE INTO bigsearch (company) VALUES('$value')");
+    $statement->execute();
+  }
 }
 echo checkCompanyBigSearch();
 echo '<br><br><br><br><br><br><br><br>';
@@ -150,6 +154,7 @@ function checkCompanySmallSearch() {
   global $node_values_new;
   global $not_useful_keywords;
   global $useful_keywords;
+  global $conn;
 
   foreach ($node_values_new as $key => $value) {
     foreach ($not_useful_keywords as $keyword) {
@@ -175,6 +180,10 @@ function checkCompanySmallSearch() {
   // fwrite($fp, "durch die Ausfilterung und Filterung beider Arrays bleiben $counter mögliche Unternehmen übrig \n\n ");
   // fputcsv($fp, $new_array_results, "\n");
   // fclose($fp);
+  foreach ($new_array_results as $key => $value) {
+    $statement = $conn->prepare("INSERT IGNORE INTO smallsearch (company) VALUES('$value')");
+    $statement->execute();
+  }
 }
 echo checkCompanySmallSearch();
 echo '<br><br><br><br><br><br><br><br>';
@@ -185,28 +194,3 @@ foreach($headers as $name => $value) {
   $value = implode(', ', $value);
   echo "{$name}: {$value}\r\n";
 }
-echo '<br><br><br><br><br><br><br><br>';
-
-// checks if a keword in the $useful_keywords array is given in the $node_values array and prints it out
-// array_filter($useful_keywords, function($w) use($node_values){
-//   $matches =  preg_grep("#\b" . $w . "\b#i", $node_values);
-//   // print_r($matches);
-//   foreach($matches as $match){
-//     if(empty($matches)){
-//       unset($matches);
-//     }
-//     echo $match,"<br />";
-//
-//   }
-// });
-
-
-// checks if a given keyword is in the company array and prints it out
-// in this case "GmbH" (justfor testing)
-// function checkCompanySingleKeyword() {
-//   global $node_values;
-//   $matches = preg_grep("#\bgmbh\b#i", $node_values);
-//   print_r($matches);
-// }
-// echo checkCompanySingleKeyword();
-// echo '<br><br><br><br><br><br><br><br>';
