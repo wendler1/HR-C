@@ -137,14 +137,16 @@ function checkCompanyBigSearch() {
   print_r(' Ergebnise nur durch check des not_useful_keywords arrays: ');
   echo '<br><br>';
   print_r(implode("<br>\n",$node_values_new));
+  // // saves the results in csv
   // $fp = fopen('/Library/WebServer/Documents/handelsregister/HR-C/one_array/daten.csv', 'w');
   // fwrite($fp, "durch die Ausfilterung des ersten Arrays bleiben $counter mögliche Unternehmen übrig \n\n ");
   // fputcsv($fp, $node_values_new, "\n");
   // fclose($fp);
-  foreach ($node_values_new as $key => $value) {
-    $statement = $conn->prepare("INSERT IGNORE INTO bigsearch (company) VALUES('$value')");
-    $statement->execute();
-  }
+  // // saves the results in the database
+  // foreach ($node_values_new as $key => $value) {
+  //   $statement = $conn->prepare("INSERT IGNORE INTO bigsearch (company) VALUES('$value')");
+  //   $statement->execute();
+  // }
 }
 echo checkCompanyBigSearch();
 echo '<br><br><br><br><br><br><br><br>';
@@ -176,14 +178,16 @@ function checkCompanySmallSearch() {
   print_r(' Ergebnise durch check beider arrays: ');
   echo '<br><br>';
   print_r(implode("<br>\n",$new_array_results));
+  // // saves the results in csv
   // $fp = fopen('/Library/WebServer/Documents/handelsregister/HR-C/two_arrays/daten.csv', 'w');
   // fwrite($fp, "durch die Ausfilterung und Filterung beider Arrays bleiben $counter mögliche Unternehmen übrig \n\n ");
   // fputcsv($fp, $new_array_results, "\n");
   // fclose($fp);
-  foreach ($new_array_results as $key => $value) {
-    $statement = $conn->prepare("INSERT IGNORE INTO smallsearch (company) VALUES('$value')");
-    $statement->execute();
-  }
+  // // saves the results in the database
+  // foreach ($new_array_results as $key => $value) {
+  //   $statement = $conn->prepare("INSERT IGNORE INTO smallsearch (company) VALUES('$value')");
+  //   $statement->execute();
+  // }
 }
 echo checkCompanySmallSearch();
 echo '<br><br><br><br><br><br><br><br>';
